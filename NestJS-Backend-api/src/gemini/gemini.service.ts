@@ -423,4 +423,540 @@ export class GeminiService {
   }
 
   // Add other methods here as needed...
+  
+  async getQuiz(courseId: string, weeksToCover: number[]) {
+    // Get course information with study plan
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      include: {
+        department: true,
+        instructor: {
+          include: { profile: true },
+        },
+      },
+    });
+
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+
+    const courseWithStudyPlan = course as any;
+    if (!courseWithStudyPlan.studyPlan || !Array.isArray(courseWithStudyPlan.studyPlan)) {
+      throw new BadRequestException('Study plan not found');
+    }
+
+    // Filter study plan to only include requested weeks
+    const relevantWeeks = courseWithStudyPlan.studyPlan.filter((week: any) => 
+      weeksToCover.includes(week.weekNumber)
+    );
+
+    if (relevantWeeks.length === 0) {
+      throw new BadRequestException('No study plan found for specified weeks');
+    }
+
+    const prompt = PromptTemplate.fromTemplate(`
+      You are an expert educational content creator specializing in {department} courses. Create a comprehensive quiz for the following course based on the study plan:
+
+      COURSE INFORMATION:
+      - Course Name: {courseName}
+      - Course Code: {courseCode}
+      - Description: {courseDescription}
+      - Academic Level: {courseLevel}
+      - Department: {department}
+      - Instructor: {instructor}
+
+      STUDY PLAN FOR QUIZ:
+      {studyPlan}
+
+      REQUIREMENTS:
+      Create a comprehensive quiz that covers the specified weeks. The quiz should include:
+      1. Multiple choice questions (40% of total)
+      2. True/False questions (20% of total)
+      3. Short answer questions (25% of total)
+      4. Essay questions (15% of total)
+      
+      Each question should:
+      - Be clearly written and unambiguous
+      - Test understanding of key concepts
+      - Include appropriate difficulty levels
+      - Have correct answers and explanations
+      - Be relevant to the course material
+
+      FORMATTING:
+      You MUST respond with ONLY a valid JSON object. Do not include any markdown formatting, code blocks, or additional text.
+      
+      The JSON response should be:
+      {{
+        "quizTitle": "Quiz Title",
+        "description": "Quiz description",
+        "totalPoints": number,
+        "timeLimit": "estimated time in minutes",
+        "questions": [
+          {{
+            "id": "question_id",
+            "type": "multiple_choice|true_false|short_answer|essay",
+            "question": "Question text",
+            "points": number,
+            "difficulty": "easy|medium|hard",
+            "options": ["option1", "option2", "option3", "option4"], // for multiple choice
+            "correctAnswer": "correct answer or option index",
+            "explanation": "Explanation of the correct answer",
+            "tags": ["tag1", "tag2"] // topics covered
+          }}
+        ]
+      }}
+
+      CRITICAL: You must respond with ONLY a valid JSON object.
+      - Do NOT include any markdown formatting (code blocks, etc.)
+      - Do NOT include any explanatory text before or after the JSON
+      - Do NOT include any code block markers
+      - Do NOT include any additional comments or notes
+      - The response must start with { and end with }
+      - The response must be parseable by JSON.parse()
+    `);
+
+    const chain = prompt.pipe(this.geminiModel).pipe(new StringOutputParser());
+
+    try {
+      console.log(`Generating quiz for course: ${course.name} (${courseId}) for weeks: ${weeksToCover.join(', ')}`);
+      const result = await chain.invoke({
+        courseName: course.name,
+        courseCode: course.code || 'N/A',
+        courseDescription: course.description,
+        courseLevel: course.level,
+        department: course.department?.name || 'General',
+        instructor: course.instructor?.profile?.firstName && course.instructor?.profile?.lastName 
+          ? `${course.instructor.profile.firstName} ${course.instructor.profile.lastName}`
+          : 'TBA',
+        studyPlan: JSON.stringify(relevantWeeks, null, 2),
+      });
+      
+      console.log(`AI response received for quiz generation, length: ${result.length}`);
+      
+      // Parse and validate the JSON response
+      const quiz = this.parseAIResponse(result, 'quiz');
+      
+      // Validate quiz structure
+      if (!quiz.quizTitle || !quiz.questions || !Array.isArray(quiz.questions)) {
+        throw new BadRequestException('Invalid quiz structure generated');
+      }
+      
+      console.log(`Quiz generated successfully for course ${courseId}: ${quiz.questions.length} questions`);
+      
+      return quiz;
+    } catch (error) {
+      console.error('AI quiz generation failed:', error.message);
+      throw new BadRequestException('Failed to generate quiz. Please try again later.');
+    }
+  }
+
+  async getAssignment(courseId: string, weeksToCover: number[]) {
+    // Get course information with study plan
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      include: {
+        department: true,
+        instructor: {
+          include: { profile: true },
+        },
+      },
+    });
+
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+
+    const courseWithStudyPlan = course as any;
+    if (!courseWithStudyPlan.studyPlan || !Array.isArray(courseWithStudyPlan.studyPlan)) {
+      throw new BadRequestException('Study plan not found');
+    }
+
+    // Filter study plan to only include requested weeks
+    const relevantWeeks = courseWithStudyPlan.studyPlan.filter((week: any) => 
+      weeksToCover.includes(week.weekNumber)
+    );
+
+    if (relevantWeeks.length === 0) {
+      throw new BadRequestException('No study plan found for specified weeks');
+    }
+
+    const prompt = PromptTemplate.fromTemplate(`
+      You are an expert educational content creator specializing in {department} courses. Create a comprehensive assignment for the following course based on the study plan:
+
+      COURSE INFORMATION:
+      - Course Name: {courseName}
+      - Course Code: {courseCode}
+      - Description: {courseDescription}
+      - Academic Level: {courseLevel}
+      - Department: {department}
+      - Instructor: {instructor}
+
+      STUDY PLAN FOR ASSIGNMENT:
+      {studyPlan}
+
+      REQUIREMENTS:
+      Create a comprehensive assignment that covers the specified weeks. The assignment should include:
+      1. Clear objectives and learning outcomes
+      2. Detailed instructions and requirements
+      3. Assessment criteria and rubrics
+      4. Expected deliverables
+      5. Submission guidelines
+      6. Time estimates and deadlines
+      
+      The assignment should:
+      - Be appropriate for {courseLevel} level students
+      - Build upon the course material
+      - Encourage critical thinking and application
+      - Be realistic in scope and difficulty
+      - Include both individual and collaborative elements if appropriate
+
+      FORMATTING:
+      You MUST respond with ONLY a valid JSON object. Do not include any markdown formatting, code blocks, or additional text.
+      
+      The JSON response should be:
+      {{
+        "assignmentTitle": "Assignment Title",
+        "description": "Detailed assignment description",
+        "objectives": ["objective1", "objective2", ...],
+        "totalPoints": number,
+        "estimatedTime": "estimated time in hours",
+        "dueDate": "YYYY-MM-DD",
+        "instructions": [
+          {{
+            "step": number,
+            "title": "Step Title",
+            "description": "Detailed step description",
+            "requirements": ["requirement1", "requirement2", ...]
+          }}
+        ],
+        "deliverables": [
+          {{
+            "type": "document|presentation|code|report|other",
+            "description": "Deliverable description",
+            "format": "file format or submission method",
+            "weight": "percentage of total grade"
+          }}
+        ],
+        "rubric": [
+          {{
+            "criterion": "Criterion name",
+            "excellent": "Description of excellent performance",
+            "good": "Description of good performance",
+            "satisfactory": "Description of satisfactory performance",
+            "needsImprovement": "Description of needs improvement",
+            "points": number
+          }}
+        ],
+        "resources": [
+          {{
+            "title": "Resource title",
+            "type": "reading|video|tool|website",
+            "url": "resource URL if applicable",
+            "description": "Resource description"
+          }}
+        ]
+      }}
+
+      CRITICAL: You must respond with ONLY a valid JSON object.
+      - Do NOT include any markdown formatting (code blocks, etc.)
+      - Do NOT include any explanatory text before or after the JSON
+      - Do NOT include any code block markers
+      - Do NOT include any additional comments or notes
+      - The response must start with { and end with }
+      - The response must be parseable by JSON.parse()
+    `);
+
+    const chain = prompt.pipe(this.geminiModel).pipe(new StringOutputParser());
+
+    try {
+      console.log(`Generating assignment for course: ${course.name} (${courseId}) for weeks: ${weeksToCover.join(', ')}`);
+      const result = await chain.invoke({
+        courseName: course.name,
+        courseCode: course.code || 'N/A',
+        courseDescription: course.description,
+        courseLevel: course.level,
+        department: course.department?.name || 'General',
+        instructor: course.instructor?.profile?.firstName && course.instructor?.profile?.lastName 
+          ? `${course.instructor.profile.firstName} ${course.instructor.profile.lastName}`
+          : 'TBA',
+        studyPlan: JSON.stringify(relevantWeeks, null, 2),
+      });
+      
+      console.log(`AI response received for assignment generation, length: ${result.length}`);
+      
+      // Parse and validate the JSON response
+      const assignment = this.parseAIResponse(result, 'assignment');
+      
+      // Validate assignment structure
+      if (!assignment.assignmentTitle || !assignment.description) {
+        throw new BadRequestException('Invalid assignment structure generated');
+      }
+      
+      console.log(`Assignment generated successfully for course ${courseId}`);
+      
+      return assignment;
+    } catch (error) {
+      console.error('AI assignment generation failed:', error.message);
+      throw new BadRequestException('Failed to generate assignment. Please try again later.');
+    }
+  }
+
+  async askQuizQuestion(courseId: string, question: string) {
+    // Get course information
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      include: {
+        department: true,
+        instructor: {
+          include: { profile: true },
+        },
+      },
+    });
+
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+
+    const prompt = PromptTemplate.fromTemplate(`
+      You are an expert educational content creator specializing in {department} courses. Answer the following question about quiz logic and answers for this course:
+
+      COURSE INFORMATION:
+      - Course Name: {courseName}
+      - Course Code: {courseCode}
+      - Description: {courseDescription}
+      - Academic Level: {courseLevel}
+      - Department: {department}
+      - Instructor: {instructor}
+
+      STUDENT QUESTION:
+      {question}
+
+      REQUIREMENTS:
+      Provide a comprehensive answer that includes:
+      1. Clear explanation of the concept or logic
+      2. Step-by-step reasoning if applicable
+      3. Examples or analogies to illustrate the point
+      4. Common misconceptions to avoid
+      5. Additional resources for further study
+      
+      The answer should be:
+      - Educational and informative
+      - Appropriate for {courseLevel} level students
+      - Clear and well-structured
+      - Helpful for understanding the course material
+
+      FORMATTING:
+      You MUST respond with ONLY a valid JSON object. Do not include any markdown formatting, code blocks, or additional text.
+      
+      The JSON response should be:
+      {{
+        "answer": "Detailed answer to the question",
+        "explanation": "Step-by-step explanation if applicable",
+        "examples": ["example1", "example2", ...],
+        "commonMisconceptions": ["misconception1", "misconception2", ...],
+        "additionalResources": [
+          {{
+            "title": "Resource title",
+            "type": "reading|video|website",
+            "description": "Resource description"
+          }}
+        ],
+        "relatedTopics": ["topic1", "topic2", ...]
+      }}
+
+      CRITICAL: You must respond with ONLY a valid JSON object.
+      - Do NOT include any markdown formatting (code blocks, etc.)
+      - Do NOT include any explanatory text before or after the JSON
+      - Do NOT include any code block markers
+      - Do NOT include any additional comments or notes
+      - The response must start with { and end with }
+      - The response must be parseable by JSON.parse()
+    `);
+
+    const chain = prompt.pipe(this.geminiModel).pipe(new StringOutputParser());
+
+    try {
+      console.log(`Answering quiz question for course: ${course.name} (${courseId})`);
+      const result = await chain.invoke({
+        courseName: course.name,
+        courseCode: course.code || 'N/A',
+        courseDescription: course.description,
+        courseLevel: course.level,
+        department: course.department?.name || 'General',
+        instructor: course.instructor?.profile?.firstName && course.instructor?.profile?.lastName 
+          ? `${course.instructor.profile.firstName} ${course.instructor.profile.lastName}`
+          : 'TBA',
+        question: question,
+      });
+      
+      console.log(`AI response received for quiz question, length: ${result.length}`);
+      
+      // Parse and validate the JSON response
+      const answer = this.parseAIResponse(result, 'quiz question answer');
+      
+      // Validate answer structure
+      if (!answer.answer) {
+        throw new BadRequestException('Invalid answer structure generated');
+      }
+      
+      console.log(`Quiz question answered successfully for course ${courseId}`);
+      
+      return answer;
+    } catch (error) {
+      console.error('AI quiz question answer failed:', error.message);
+      throw new BadRequestException('Failed to answer quiz question. Please try again later.');
+    }
+  }
+
+  async getPersonalReport(courseId: string, studentId: string) {
+    // Get course information
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      include: {
+        department: true,
+        instructor: {
+          include: { profile: true },
+        },
+      },
+    });
+
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
+
+    // Get student's quiz attempts for this course
+    const quizAttempts = await this.prisma.quizAttempt.findMany({
+      where: {
+        quiz: {
+          courseId: courseId,
+        },
+        studentId: studentId,
+      },
+      include: {
+        quiz: true,
+      },
+      orderBy: {
+        startedAt: 'desc',
+      },
+    });
+
+    if (quizAttempts.length === 0) {
+      throw new BadRequestException('No quiz attempts found');
+    }
+
+    const prompt = PromptTemplate.fromTemplate(`
+      You are an expert educational content creator specializing in {department} courses. Generate a detailed personal report for a student based on their quiz performance:
+
+      COURSE INFORMATION:
+      - Course Name: {courseName}
+      - Course Code: {courseCode}
+      - Description: {courseDescription}
+      - Academic Level: {courseLevel}
+      - Department: {department}
+      - Instructor: {instructor}
+
+      STUDENT QUIZ PERFORMANCE:
+      {quizAttempts}
+
+      REQUIREMENTS:
+      Analyze the student's quiz performance and provide:
+      1. Overall performance summary
+      2. Strengths and areas of improvement
+      3. Knowledge gaps identification
+      4. Specific recommendations for improvement
+      5. Study strategies and resources
+      6. Progress tracking suggestions
+      
+      The report should be:
+      - Encouraging and constructive
+      - Specific to the student's performance
+      - Actionable with clear next steps
+      - Educational and informative
+
+      FORMATTING:
+      You MUST respond with ONLY a valid JSON object. Do not include any markdown formatting, code blocks, or additional text.
+      
+      The JSON response should be:
+      {{
+        "studentId": "{studentId}",
+        "courseId": "{courseId}",
+        "overallScore": "percentage or grade",
+        "totalAttempts": number,
+        "performanceSummary": "Overall performance summary",
+        "strengths": ["strength1", "strength2", ...],
+        "areasForImprovement": ["area1", "area2", ...],
+        "knowledgeGaps": [
+          {{
+            "topic": "Topic name",
+            "description": "Description of the gap",
+            "severity": "low|medium|high",
+            "recommendations": ["rec1", "rec2", ...]
+          }}
+        ],
+        "recommendations": [
+          {{
+            "category": "study|practice|resources|time_management",
+            "title": "Recommendation title",
+            "description": "Detailed recommendation",
+            "priority": "high|medium|low",
+            "estimatedTime": "time estimate"
+          }}
+        ],
+        "studyPlan": [
+          {{
+            "week": number,
+            "focus": "What to focus on",
+            "activities": ["activity1", "activity2", ...],
+            "resources": ["resource1", "resource2", ...]
+          }}
+        ],
+        "nextSteps": ["step1", "step2", ...],
+        "estimatedImprovement": "Expected improvement with recommendations"
+      }}
+
+      CRITICAL: You must respond with ONLY a valid JSON object.
+      - Do NOT include any markdown formatting (code blocks, etc.)
+      - Do NOT include any explanatory text before or after the JSON
+      - Do NOT include any code block markers
+      - Do NOT include any additional comments or notes
+      - The response must start with { and end with }
+      - The response must be parseable by JSON.parse()
+    `);
+
+    const chain = prompt.pipe(this.geminiModel).pipe(new StringOutputParser());
+
+    try {
+      console.log(`Generating personal report for student: ${studentId} in course: ${course.name} (${courseId})`);
+      const result = await chain.invoke({
+        courseName: course.name,
+        courseCode: course.code || 'N/A',
+        courseDescription: course.description,
+        courseLevel: course.level,
+        department: course.department?.name || 'General',
+        instructor: course.instructor?.profile?.firstName && course.instructor?.profile?.lastName 
+          ? `${course.instructor.profile.firstName} ${course.instructor.profile.lastName}`
+          : 'TBA',
+        studentId: studentId,
+        courseId: courseId,
+        quizAttempts: JSON.stringify(quizAttempts, null, 2),
+      });
+      
+      console.log(`AI response received for personal report, length: ${result.length}`);
+      
+      // Parse and validate the JSON response
+      const report = this.parseAIResponse(result, 'personal report');
+      
+      // Validate report structure
+      if (!report.performanceSummary || !report.recommendations) {
+        throw new BadRequestException('Invalid report structure generated');
+      }
+      
+      console.log(`Personal report generated successfully for student ${studentId} in course ${courseId}`);
+      
+      return report;
+    } catch (error) {
+      console.error('AI personal report generation failed:', error.message);
+      throw new BadRequestException('Failed to generate personal report. Please try again later.');
+    }
+  }
 } 

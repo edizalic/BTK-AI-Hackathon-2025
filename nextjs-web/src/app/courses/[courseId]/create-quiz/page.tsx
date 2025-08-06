@@ -180,7 +180,7 @@ export default function CreateQuizPage() {
   )
 
   return (
-    <AuthGuard allowedRoles={['TEACHER', 'SUPERVISOR_TEACHER']}>
+    <AuthGuard requiredRoles={['TEACHER', 'SUPERVISOR_TEACHER']}>
       <ResponsiveDrawer drawerContent={drawerContent}>
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-slate-900 dark:to-slate-800">
           <div className="max-w-7xl mx-auto p-6 space-y-8">

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import { TokenManager, API } from '@/api'
-import type { UserProfile } from '@/api/types'
+import type { UserProfile, LoginResponse } from '@/api/types'
 
 // Types for our auth system
 export interface User {
@@ -11,7 +11,7 @@ export interface User {
   email: string
   role: 'ADMIN' | 'SUPERVISOR_TEACHER' | 'TEACHER' | 'STUDENT'
   isSupervisor: boolean
-  profile: UserProfile
+  profile?: UserProfile
 }
 
 export interface AuthState {
@@ -96,7 +96,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         
         setState(prev => ({
           ...prev,
-          user: userProfile,
+          user: userProfile as User,
           isAuthenticated: true,
           isLoading: false,
           tokens: storedTokens
@@ -160,12 +160,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Update auth state
       setState(prev => ({
         ...prev,
-        user: actualData.user,
+        user: actualData.user as User,
         isAuthenticated: true,
         isLoading: false,
         tokens: {
           accessToken: actualData.accessToken,
-          refreshToken: actualData.refreshToken
+          refreshToken: (actualData as any).refreshToken || null
         }
       }))
       
@@ -219,14 +219,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
 
       // Store new tokens
-      TokenManager.storeTokens(actualData)
+      TokenManager.storeTokens(actualData as LoginResponse)
       
       // Update state
       setState(prev => ({
         ...prev,
         tokens: {
           accessToken: actualData.accessToken,
-          refreshToken: actualData.refreshToken
+          refreshToken: (actualData as any).refreshToken || null
         }
       }))
       

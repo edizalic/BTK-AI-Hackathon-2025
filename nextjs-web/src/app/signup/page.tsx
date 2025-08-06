@@ -96,7 +96,7 @@ export default function TeacherDashboard() {
       console.log('Response structure keys:', Object.keys(response))
       
       // Handle different response structures
-      const studentsArray = response.users || response.data || []
+      const studentsArray = response.users || []
       console.log('Students array:', studentsArray)
       console.log('Number of students found:', studentsArray.length)
       
@@ -146,7 +146,7 @@ export default function TeacherDashboard() {
       console.log('Response structure keys:', Object.keys(response))
       
       // Handle different response structures
-      const teachersArray = response.users || response.data || []
+      const teachersArray = response.users || []
       console.log('Teachers array:', teachersArray)
       console.log('Number of teachers found:', teachersArray.length)
       

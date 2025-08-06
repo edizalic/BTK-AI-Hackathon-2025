@@ -1,0 +1,187 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/gemini/[courseId]/get-weekly-study-plan",
+      "regex": "^/api/gemini/([^/]+?)/get\\-weekly\\-study\\-plan(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId"
+      },
+      "namedRegex": "^/api/gemini/(?<nxtPcourseId>[^/]+?)/get\\-weekly\\-study\\-plan(?:/)?$"
+    },
+    {
+      "page": "/courses/[courseId]",
+      "regex": "^/courses/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId"
+      },
+      "namedRegex": "^/courses/(?<nxtPcourseId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/courses/[courseId]/create-assignment",
+      "regex": "^/courses/([^/]+?)/create\\-assignment(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId"
+      },
+      "namedRegex": "^/courses/(?<nxtPcourseId>[^/]+?)/create\\-assignment(?:/)?$"
+    },
+    {
+      "page": "/courses/[courseId]/create-quiz",
+      "regex": "^/courses/([^/]+?)/create\\-quiz(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId"
+      },
+      "namedRegex": "^/courses/(?<nxtPcourseId>[^/]+?)/create\\-quiz(?:/)?$"
+    },
+    {
+      "page": "/courses/[courseId]/enroll",
+      "regex": "^/courses/([^/]+?)/enroll(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId"
+      },
+      "namedRegex": "^/courses/(?<nxtPcourseId>[^/]+?)/enroll(?:/)?$"
+    },
+    {
+      "page": "/courses/[courseId]/solve-quiz/[quizId]",
+      "regex": "^/courses/([^/]+?)/solve\\-quiz/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcourseId": "nxtPcourseId",
+        "nxtPquizId": "nxtPquizId"
+      },
+      "namedRegex": "^/courses/(?<nxtPcourseId>[^/]+?)/solve\\-quiz/(?<nxtPquizId>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/assignments",
+      "regex": "^/assignments(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/assignments(?:/)?$"
+    },
+    {
+      "page": "/courses",
+      "regex": "^/courses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/courses(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/forgot-password",
+      "regex": "^/forgot\\-password(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/forgot\\-password(?:/)?$"
+    },
+    {
+      "page": "/grades",
+      "regex": "^/grades(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/grades(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/manage-students",
+      "regex": "^/manage\\-students(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manage\\-students(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/profile",
+      "regex": "^/profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profile(?:/)?$"
+    },
+    {
+      "page": "/signup",
+      "regex": "^/signup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/signup(?:/)?$"
+    },
+    {
+      "page": "/student-portal",
+      "regex": "^/student\\-portal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/student\\-portal(?:/)?$"
+    },
+    {
+      "page": "/supervisor-courses",
+      "regex": "^/supervisor\\-courses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/supervisor\\-courses(?:/)?$"
+    },
+    {
+      "page": "/teacher-portal",
+      "regex": "^/teacher\\-portal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/teacher\\-portal(?:/)?$"
+    },
+    {
+      "page": "/test",
+      "regex": "^/test(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/test(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

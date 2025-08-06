@@ -23,4 +23,8 @@ export declare class GeminiService {
             note: string;
         };
     }>;
+    getQuiz(courseId: string, weeksToCover: number[]): Promise<any>;
+    getAssignment(courseId: string, weeksToCover: number[]): Promise<any>;
+    askQuizQuestion(courseId: string, question: string): Promise<any>;
+    getPersonalReport(courseId: string, studentId: string): Promise<any>;
 }

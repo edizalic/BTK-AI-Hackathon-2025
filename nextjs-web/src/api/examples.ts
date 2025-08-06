@@ -4,8 +4,9 @@
  * DO NOT import this file in production code - it's for reference only
  */
 
-import { API, TokenManager } from './index'
+import { API, TokenManager, APIDev, APIStatus } from './index'
 import type { LoginDto, CreateStudentDto, CreateCourseDto } from './types'
+import { UserRole, CourseLevel, AssignmentType, AssignmentStatus, NotificationPriority } from './types'
 
 /**
  * Authentication Examples
@@ -94,7 +95,7 @@ export class UsersExamples {
   static async getUsersExample() {
     try {
       const response = await API.users.getUsers({
-        role: 'STUDENT',
+        role: UserRole.STUDENT,
         isActive: true,
         search: 'john',
         limit: 10,
@@ -144,7 +145,7 @@ export class CoursesExamples {
         capacity: 30,
         category: 'Computer Science',
         departmentId: 'dept-cs',
-        level: 'BEGINNER',
+        level: CourseLevel.BEGINNER,
         startDate: '2024-09-01',
         endDate: '2024-12-15'
       }
@@ -190,7 +191,7 @@ export class AssignmentsExamples {
         courseId: 'course-id',
         title: 'Programming Assignment 1',
         description: 'Create a simple calculator program',
-        type: 'HOMEWORK',
+        type: AssignmentType.HOMEWORK,
         dueDate: '2024-02-15T23:59:59Z',
         maxPoints: 100,
         isGroupWork: false
@@ -219,7 +220,7 @@ export class AssignmentsExamples {
   static async getStudentAssignmentsExample() {
     try {
       const response = await API.assignments.getStudentAssignments(undefined, {
-        status: 'ASSIGNED',
+        status: AssignmentStatus.ASSIGNED,
         courseId: 'course-id',
         limit: 20
       })
@@ -348,7 +349,7 @@ export class NotificationsExamples {
       const response = await API.notifications.getMyNotifications({
         isRead: false,
         limit: 10,
-        priority: 'HIGH'
+        priority: NotificationPriority.HIGH
       })
       
       console.log('🔔 Notifications:', response.notifications)
@@ -374,7 +375,7 @@ export class NotificationsExamples {
       const result = await API.notifications.sendCourseAnnouncement('course-id', {
         title: 'Important: Exam Schedule Change',
         message: 'The midterm exam has been moved to next Friday at 2 PM.',
-        priority: 'HIGH'
+        priority: NotificationPriority.HIGH
       })
       console.log('✅ Announcement sent to', result.sent, 'students')
     } catch (error) {
@@ -414,7 +415,7 @@ export class DashboardExamples {
         notifications: notifications.notifications,
         stats: {
           totalCourses: courses.total,
-          pendingAssignments: assignments.assignments.filter(a => a.userSubmission?.grade === undefined).length,
+          pendingAssignments: assignments.assignments.filter(a => a.status === AssignmentStatus.ASSIGNED || a.status === AssignmentStatus.DRAFT).length,
           unreadNotifications: notifications.unreadCount
         }
       }
@@ -492,14 +493,14 @@ export class DevExamples {
     }
 
     try {
-      // Quick login for testing
-      await API.dev.quickLogin('student')
-      
+            // Quick login for testing
+      await APIDev.quickLogin('student')
+
       // Log current status
-      API.dev.logStatus()
+      APIDev.logStatus()
       
       // Test API connection
-      const connectionTest = await API.status.testConnection()
+      const connectionTest = await APIStatus.testConnection()
       console.log('🌐 Connection test:', connectionTest)
       
     } catch (error) {

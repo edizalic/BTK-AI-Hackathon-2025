@@ -3,10 +3,10 @@ import type {
   Notification,
   CreateNotificationDto,
   NotificationFiltersDto,
-  NotificationType,
   NotificationPriority,
   UserRole
 } from './types'
+import { NotificationType } from './types'
 
 /**
  * Notifications API Service

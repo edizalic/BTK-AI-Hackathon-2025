@@ -36,7 +36,7 @@ const useCoursesData = () => {
         
         // Fetch all courses first
         const allCoursesResponse = await API.courses.getCourses({})
-        const allCoursesArray = allCoursesResponse.data || allCoursesResponse.courses || []
+        const allCoursesArray = allCoursesResponse.courses || []
         
         console.log('Total courses available:', allCoursesArray.length)
         
@@ -52,12 +52,12 @@ const useCoursesData = () => {
             console.log('Full enrollment response:', enrollmentResponse)
             
             // The backend returns enrollment objects, not course objects directly
-            const enrollments = enrollmentResponse.data || enrollmentResponse.enrollments || []
+            const enrollments = enrollmentResponse.enrollments || []
             console.log('Enrollments found:', enrollments.length)
             
             // Extract course data from enrollments
             const enrolledCourses = enrollments
-              .filter(enrollment => enrollment.status === 'ACTIVE' || enrollment.status === 'active')
+              .filter(enrollment => enrollment.status === 'ACTIVE')
               .map(enrollment => enrollment.course)
               .filter(course => course) // Remove any null/undefined courses
             

@@ -87,7 +87,7 @@ export default function SupervisorCoursesPage() {
       console.log('All courses response keys:', Object.keys(allCoursesResponse))
       
       // Handle different response structures - API returns data array
-      const allCoursesArray = allCoursesResponse.data || allCoursesResponse.courses || []
+      const allCoursesArray = allCoursesResponse.courses || []
       console.log('All courses array:', allCoursesArray)
       console.log('Total courses in system:', allCoursesArray.length)
       
@@ -160,8 +160,8 @@ export default function SupervisorCoursesPage() {
       })
       
       // Handle different response structures for both
-      const teachersArray = teachersResponse.users || teachersResponse.data || []
-      const supervisorsArray = supervisorsResponse.users || supervisorsResponse.data || []
+      const teachersArray = teachersResponse.users || []
+      const supervisorsArray = supervisorsResponse.users || []
       
       // Combine both arrays
       const allInstructors = [...teachersArray, ...supervisorsArray]

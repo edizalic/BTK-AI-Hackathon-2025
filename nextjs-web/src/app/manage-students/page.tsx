@@ -61,7 +61,7 @@ export default function ManageStudents() {
       console.log('Students API response:', response)
       
       // Handle different response structures
-      const studentsArray = response.users || response.data || []
+      const studentsArray = response.users || []
       console.log('Students array:', studentsArray)
       console.log('Number of students found:', studentsArray.length)
       
