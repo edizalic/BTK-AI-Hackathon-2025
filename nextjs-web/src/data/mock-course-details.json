@@ -1,0 +1,594 @@
+{
+  "CS101": {
+    "materials": [
+      {
+        "id": "mat_cs101_1",
+        "title": "Course Syllabus - Spring 2025",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "2.1 MB",
+        "downloadUrl": "/materials/cs101/syllabus.pdf",
+        "description": "Complete course syllabus including grading policy, schedule, and requirements"
+      },
+      {
+        "id": "mat_cs101_2",
+        "title": "Week 1: Introduction to Programming",
+        "type": "slides",
+        "uploadDate": "2025-01-20",
+        "fileSize": "5.3 MB",
+        "downloadUrl": "/materials/cs101/week1-slides.pdf",
+        "description": "Lecture slides covering programming fundamentals and Python setup"
+      },
+      {
+        "id": "mat_cs101_3",
+        "title": "Python Tutorial Handout",
+        "type": "handout",
+        "uploadDate": "2025-01-18",
+        "fileSize": "1.8 MB",
+        "downloadUrl": "/materials/cs101/python-tutorial.pdf",
+        "description": "Step-by-step Python installation and basic syntax guide"
+      },
+      {
+        "id": "mat_cs101_4",
+        "title": "Week 2: Variables and Data Types",
+        "type": "slides",
+        "uploadDate": "2025-01-22",
+        "fileSize": "4.7 MB",
+        "downloadUrl": "/materials/cs101/week2-slides.pdf"
+      },
+      {
+        "id": "mat_cs101_5",
+        "title": "Python Documentation Reference",
+        "type": "reference",
+        "uploadDate": "2025-01-15",
+        "fileSize": "External Link",
+        "downloadUrl": "https://docs.python.org/3/",
+        "description": "Official Python 3 documentation"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_005",
+        "title": "Data Structures Lab",
+        "dueDate": "2025-01-12",
+        "status": "overdue"
+      },
+      {
+        "id": "assign_017",
+        "title": "Object-Oriented Programming Basics",
+        "dueDate": "2025-02-07",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [
+      {
+        "id": "grade_cs101_1",
+        "assignmentTitle": "Python Basics Assignment",
+        "score": 92,
+        "maxPoints": 100,
+        "letterGrade": "A-",
+        "gradedDate": "2025-01-18",
+        "feedback": "Excellent work! Good understanding of Python fundamentals."
+      },
+      {
+        "id": "grade_cs101_2",
+        "assignmentTitle": "Algorithm Design Project",
+        "score": 108,
+        "maxPoints": 120,
+        "letterGrade": "A",
+        "gradedDate": "2025-01-25",
+        "feedback": "Outstanding project! Creative approach to the sorting algorithm."
+      }
+    ],
+    "upcomingSessions": [
+      {
+        "id": "session_cs101_1",
+        "date": "2025-01-29",
+        "topic": "Functions and Modules",
+        "location": "Computer Lab A, Room 101"
+      },
+      {
+        "id": "session_cs101_2",
+        "date": "2025-01-31",
+        "topic": "Object-Oriented Programming",
+        "location": "Computer Lab A, Room 101"
+      },
+      {
+        "id": "session_cs101_3",
+        "date": "2025-02-03",
+        "topic": "File I/O and Exception Handling",
+        "location": "Computer Lab A, Room 101"
+      }
+    ],
+    "openQuizzes": [
+      {
+        "id": "quiz_cs101_1",
+        "title": "Python Fundamentals Quiz",
+        "description": "Test your knowledge of Python basics including variables, data types, and basic operations",
+        "duration": "30 minutes",
+        "totalQuestions": 15,
+        "maxPoints": 100,
+        "dueDate": "2025-02-05T23:59:00Z",
+        "isTimed": true,
+        "attemptsAllowed": 2,
+        "attemptsUsed": 0
+      },
+      {
+        "id": "quiz_cs101_2",
+        "title": "Data Structures Quiz",
+        "description": "Multiple choice questions on lists, tuples, dictionaries, and sets",
+        "duration": "45 minutes",
+        "totalQuestions": 20,
+        "maxPoints": 150,
+        "dueDate": "2025-02-10T23:59:00Z",
+        "isTimed": true,
+        "attemptsAllowed": 1,
+        "attemptsUsed": 0
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann_cs101_1",
+        "title": "Lab Assignment Due This Friday",
+        "content": "Reminder that the Data Structures Lab is due this Friday at 11:59 PM. Please submit through the course portal.",
+        "date": "2025-01-27",
+        "priority": "high",
+        "author": "Dr. Sarah Johnson"
+      },
+      {
+        "id": "ann_cs101_2",
+        "title": "Office Hours Change",
+        "content": "My office hours for this week will be moved to Thursday 2-4 PM due to a faculty meeting on Tuesday.",
+        "date": "2025-01-26",
+        "priority": "medium",
+        "author": "Dr. Sarah Johnson"
+      }
+    ]
+  },
+  "MATH201": {
+    "materials": [
+      {
+        "id": "mat_math201_1",
+        "title": "Calculus II Syllabus",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "1.9 MB",
+        "downloadUrl": "/materials/math201/syllabus.pdf"
+      },
+      {
+        "id": "mat_math201_2",
+        "title": "Integration Techniques - Chapter 7",
+        "type": "reading",
+        "uploadDate": "2025-01-20",
+        "fileSize": "12.4 MB",
+        "downloadUrl": "/materials/math201/chapter7.pdf",
+        "description": "Textbook chapter covering integration by parts and substitution"
+      },
+      {
+        "id": "mat_math201_3",
+        "title": "Week 3: Series and Sequences",
+        "type": "slides",
+        "uploadDate": "2025-01-24",
+        "fileSize": "6.1 MB",
+        "downloadUrl": "/materials/math201/week3-slides.pdf"
+      },
+      {
+        "id": "mat_math201_4",
+        "title": "Formula Sheet for Midterm",
+        "type": "handout",
+        "uploadDate": "2025-01-25",
+        "fileSize": "892 KB",
+        "downloadUrl": "/materials/math201/formula-sheet.pdf"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_020",
+        "title": "Parametric Equations Lab",
+        "dueDate": "2025-02-09",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [
+      {
+        "id": "grade_math201_1",
+        "assignmentTitle": "Calculus Problem Set 3",
+        "score": 43,
+        "maxPoints": 50,
+        "letterGrade": "B+",
+        "gradedDate": "2025-01-21",
+        "feedback": "Good work overall. Review partial fraction decomposition."
+      },
+      {
+        "id": "grade_math201_2",
+        "assignmentTitle": "Applications of Integration",
+        "score": 58,
+        "maxPoints": 65,
+        "letterGrade": "B+",
+        "gradedDate": "2025-01-28",
+        "feedback": "Good problem-solving approach. Minor calculation errors."
+      }
+    ],
+    "upcomingSessions": [
+      {
+        "id": "session_math201_1",
+        "date": "2025-01-30",
+        "topic": "Convergence Tests for Series",
+        "location": "Mathematics Hall, Room 215"
+      },
+      {
+        "id": "session_math201_2",
+        "date": "2025-02-04",
+        "topic": "Power Series",
+        "location": "Mathematics Hall, Room 215"
+      },
+      {
+        "id": "session_math201_3",
+        "date": "2025-02-06",
+        "topic": "Taylor and Maclaurin Series",
+        "location": "Mathematics Hall, Room 215"
+      }
+    ],
+    "openQuizzes": [
+      {
+        "id": "quiz_math201_1",
+        "title": "Calculus II Midterm Review Quiz",
+        "description": "Practice quiz covering integration techniques and applications",
+        "duration": "60 minutes",
+        "totalQuestions": 25,
+        "maxPoints": 200,
+        "dueDate": "2025-02-12T23:59:00Z",
+        "isTimed": true,
+        "attemptsAllowed": 3,
+        "attemptsUsed": 1
+      }
+    ],
+    "openQuizzes": [],
+    "announcements": [
+      {
+        "id": "ann_math201_1",
+        "title": "Midterm Exam Scheduled",
+        "content": "The midterm exam will be held on February 13th during regular class time. The exam will cover chapters 6-8.",
+        "date": "2025-01-27",
+        "priority": "high",
+        "author": "Prof. Michael Chen"
+      },
+      {
+        "id": "ann_math201_2",
+        "title": "Study Group Formation",
+        "content": "Students interested in forming study groups can sign up on the sheet outside my office or email me directly.",
+        "date": "2025-01-25",
+        "priority": "low",
+        "author": "Prof. Michael Chen"
+      }
+    ]
+  },
+  "ENG102": {
+    "materials": [
+      {
+        "id": "mat_eng102_1",
+        "title": "English Composition Syllabus",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "2.3 MB",
+        "downloadUrl": "/materials/eng102/syllabus.pdf"
+      },
+      {
+        "id": "mat_eng102_2",
+        "title": "Essay Writing Guidelines",
+        "type": "handout",
+        "uploadDate": "2025-01-18",
+        "fileSize": "1.5 MB",
+        "downloadUrl": "/materials/eng102/essay-guidelines.pdf",
+        "description": "Comprehensive guide to essay structure and citation format"
+      },
+      {
+        "id": "mat_eng102_3",
+        "title": "Week 2: Argumentative Writing",
+        "type": "slides",
+        "uploadDate": "2025-01-22",
+        "fileSize": "3.8 MB",
+        "downloadUrl": "/materials/eng102/week2-slides.pdf"
+      },
+      {
+        "id": "mat_eng102_4",
+        "title": "Sample Essays for Analysis",
+        "type": "reading",
+        "uploadDate": "2025-01-20",
+        "fileSize": "4.2 MB",
+        "downloadUrl": "/materials/eng102/sample-essays.pdf"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_008",
+        "title": "Grammar and Style Exercises",
+        "dueDate": "2025-02-03",
+        "status": "assigned"
+      },
+      {
+        "id": "assign_013",
+        "title": "Creative Writing Assignment",
+        "dueDate": "2025-02-08",
+        "status": "assigned"
+      },
+      {
+        "id": "assign_019",
+        "title": "Research Paper Draft",
+        "dueDate": "2025-02-15",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [],
+    "upcomingSessions": [
+      {
+        "id": "session_eng102_1",
+        "date": "2025-01-29",
+        "topic": "Research Methods and Citation",
+        "location": "Liberal Arts Building, Room 108"
+      },
+      {
+        "id": "session_eng102_2",
+        "date": "2025-02-03",
+        "topic": "Peer Review Workshop",
+        "location": "Liberal Arts Building, Room 108"
+      },
+      {
+        "id": "session_eng102_3",
+        "date": "2025-02-05",
+        "topic": "Advanced Grammar Review",
+        "location": "Liberal Arts Building, Room 108"
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann_eng102_1",
+        "title": "Peer Review Session Next Week",
+        "content": "Please bring printed copies of your draft essays for peer review on Monday. We'll be working in groups of 3-4.",
+        "date": "2025-01-27",
+        "priority": "medium",
+        "author": "Dr. Emily Rodriguez"
+      }
+    ]
+  },
+  "HIST150": {
+    "materials": [
+      {
+        "id": "mat_hist150_1",
+        "title": "World History Course Syllabus",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "2.8 MB",
+        "downloadUrl": "/materials/hist150/syllabus.pdf"
+      },
+      {
+        "id": "mat_hist150_2",
+        "title": "Ancient Civilizations Reading Pack",
+        "type": "reading",
+        "uploadDate": "2025-01-18",
+        "fileSize": "15.7 MB",
+        "downloadUrl": "/materials/hist150/ancient-civilizations.pdf",
+        "description": "Primary sources from Mesopotamia, Egypt, and Greece"
+      },
+      {
+        "id": "mat_hist150_3",
+        "title": "Week 2: Egyptian Civilization",
+        "type": "slides",
+        "uploadDate": "2025-01-22",
+        "fileSize": "8.9 MB",
+        "downloadUrl": "/materials/hist150/egypt-slides.pdf"
+      },
+      {
+        "id": "mat_hist150_4",
+        "title": "Timeline Template",
+        "type": "handout",
+        "uploadDate": "2025-01-16",
+        "fileSize": "654 KB",
+        "downloadUrl": "/materials/hist150/timeline-template.pdf"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_004",
+        "title": "Research Project Proposal",
+        "dueDate": "2025-02-05",
+        "status": "assigned"
+      },
+      {
+        "id": "assign_023",
+        "title": "Time Test Project",
+        "dueDate": "2025-12-18",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [
+      {
+        "id": "grade_hist150_1",
+        "assignmentTitle": "Primary Source Analysis",
+        "score": 75,
+        "maxPoints": 80,
+        "letterGrade": "A-",
+        "gradedDate": "2025-01-26",
+        "feedback": "Excellent analysis and contextualization. Strong historical methodology."
+      }
+    ],
+    "upcomingSessions": [
+      {
+        "id": "session_hist150_1",
+        "date": "2025-01-30",
+        "topic": "Greek City-States and Democracy",
+        "location": "History Hall, Room 304"
+      },
+      {
+        "id": "session_hist150_2",
+        "date": "2025-02-04",
+        "topic": "Roman Republic and Empire",
+        "location": "History Hall, Room 304"
+      },
+      {
+        "id": "session_hist150_3",
+        "date": "2025-02-06",
+        "topic": "Early Christianity and Byzantine Empire",
+        "location": "History Hall, Room 304"
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann_hist150_1",
+        "title": "Museum Field Trip Opportunity",
+        "content": "Optional field trip to the Metropolitan Museum's Ancient Art collection on Saturday, Feb 8th. Sign up by Friday if interested.",
+        "date": "2025-01-28",
+        "priority": "low",
+        "author": "Prof. David Williams"
+      }
+    ]
+  },
+  "PHYS201": {
+    "materials": [
+      {
+        "id": "mat_phys201_1",
+        "title": "Physics I: Mechanics Syllabus",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "2.4 MB",
+        "downloadUrl": "/materials/phys201/syllabus.pdf"
+      },
+      {
+        "id": "mat_phys201_2",
+        "title": "Lab Safety Guidelines",
+        "type": "handout",
+        "uploadDate": "2025-01-16",
+        "fileSize": "1.1 MB",
+        "downloadUrl": "/materials/phys201/lab-safety.pdf",
+        "description": "Required reading before first lab session"
+      },
+      {
+        "id": "mat_phys201_3",
+        "title": "Week 2: Newton's Laws",
+        "type": "slides",
+        "uploadDate": "2025-01-22",
+        "fileSize": "7.2 MB",
+        "downloadUrl": "/materials/phys201/newtons-laws.pdf"
+      },
+      {
+        "id": "mat_phys201_4",
+        "title": "Physics Formula Reference",
+        "type": "reference",
+        "uploadDate": "2025-01-15",
+        "fileSize": "2.8 MB",
+        "downloadUrl": "/materials/phys201/formula-reference.pdf"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_018",
+        "title": "Energy Conservation Project",
+        "dueDate": "2025-02-12",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [
+      {
+        "id": "grade_phys201_1",
+        "assignmentTitle": "Forces and Motion Lab",
+        "score": 82,
+        "maxPoints": 90,
+        "letterGrade": "B+",
+        "gradedDate": "2025-01-26",
+        "feedback": "Good experimental technique. Data analysis could be more thorough."
+      }
+    ],
+    "upcomingSessions": [
+      {
+        "id": "session_phys201_1",
+        "date": "2025-01-29",
+        "topic": "Work and Energy",
+        "location": "Physics Lab, Room 201"
+      },
+      {
+        "id": "session_phys201_2",
+        "date": "2025-01-31",
+        "topic": "Conservation of Energy Lab",
+        "location": "Physics Lab, Room 201"
+      },
+      {
+        "id": "session_phys201_3",
+        "date": "2025-02-03",
+        "topic": "Linear Momentum",
+        "location": "Physics Lab, Room 201"
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann_phys201_1",
+        "title": "Lab Equipment Reminder",
+        "content": "Please remember to bring your lab notebook and safety goggles to every lab session. Lab coats are provided.",
+        "date": "2025-01-27",
+        "priority": "medium",
+        "author": "Dr. Lisa Park"
+      }
+    ]
+  },
+  "ART110": {
+    "materials": [
+      {
+        "id": "mat_art110_1",
+        "title": "Digital Art Course Syllabus",
+        "type": "syllabus",
+        "uploadDate": "2025-01-15",
+        "fileSize": "1.8 MB",
+        "downloadUrl": "/materials/art110/syllabus.pdf"
+      },
+      {
+        "id": "mat_art110_2",
+        "title": "Software Installation Guide",
+        "type": "handout",
+        "uploadDate": "2025-01-16",
+        "fileSize": "3.2 MB",
+        "downloadUrl": "/materials/art110/software-guide.pdf",
+        "description": "Step-by-step installation for Adobe Creative Suite"
+      },
+      {
+        "id": "mat_art110_3",
+        "title": "Color Theory Fundamentals",
+        "type": "slides",
+        "uploadDate": "2025-01-22",
+        "fileSize": "9.1 MB",
+        "downloadUrl": "/materials/art110/color-theory.pdf"
+      }
+    ],
+    "upcomingDeadlines": [
+      {
+        "id": "assign_007",
+        "title": "Digital Portfolio Project",
+        "dueDate": "2025-02-05",
+        "status": "assigned"
+      }
+    ],
+    "recentGrades": [],
+    "upcomingSessions": [
+      {
+        "id": "session_art110_1",
+        "date": "2025-01-31",
+        "topic": "Advanced Photoshop Techniques",
+        "location": "Art Studio, Digital Lab"
+      },
+      {
+        "id": "session_art110_2",
+        "date": "2025-02-07",
+        "topic": "Portfolio Presentation Workshop",
+        "location": "Art Studio, Digital Lab"
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann_art110_1",
+        "title": "Guest Artist Lecture",
+        "content": "Professional digital artist Maya Chen will be giving a guest lecture next Friday on commercial design techniques.",
+        "date": "2025-01-28",
+        "priority": "medium",
+        "author": "Prof. Maria Gonzalez"
+      }
+    ]
+  }
+}

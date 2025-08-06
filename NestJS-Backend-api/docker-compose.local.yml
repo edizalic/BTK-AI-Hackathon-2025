@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Only
+  db:
+    image: postgres:15
+    container_name: education_postgres_local
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: AI_Hackathon
+      POSTGRES_USER: ediz
+      POSTGRES_PASSWORD: 123_Ediz_2004
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pg_data_local:/var/lib/postgresql/data
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ediz -d AI_Hackathon"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pg_data_local:
+    driver: local

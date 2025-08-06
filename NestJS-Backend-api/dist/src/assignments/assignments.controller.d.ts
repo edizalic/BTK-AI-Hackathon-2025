@@ -1,0 +1,102 @@
+import { AssignmentsService } from './assignments.service';
+import { UserWithProfile } from '../users/interfaces/user-with-profile.interface';
+import { CreateAssignmentDto } from './dto/create-assignment.dto';
+import { UpdateAssignmentDto } from './dto/update-assignment.dto';
+import { AssignmentFiltersDto } from './dto/assignment-filters.dto';
+export declare class AssignmentsController {
+    private readonly assignmentsService;
+    constructor(assignmentsService: AssignmentsService);
+    createAssignment(createAssignmentDto: CreateAssignmentDto, user: UserWithProfile): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }>;
+    findAll(filters: AssignmentFiltersDto): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }>;
+    updateAssignment(id: string, updateAssignmentDto: UpdateAssignmentDto, user: UserWithProfile): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }>;
+    deleteAssignment(id: string, user: UserWithProfile): Promise<{
+        message: string;
+    }>;
+    getAssignmentsByStudent(studentId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }[]>;
+    getAssignmentsByCourse(courseId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        type: import(".prisma/client").$Enums.AssignmentType;
+        description: string;
+        title: string;
+        assignedDate: Date;
+        createdById: string;
+        status: import(".prisma/client").$Enums.AssignmentStatus;
+        courseId: string;
+        dueDate: Date;
+        maxPoints: number;
+        isGroupWork: boolean;
+    }[]>;
+}

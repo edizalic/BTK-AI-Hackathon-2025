@@ -1,0 +1,256 @@
+{
+  "templates": {
+    "basic-dashboard": {
+      "id": "basic-dashboard",
+      "title": "Basic Dashboard Template",
+      "description": "A simple dashboard template with header and action cards",
+      "userType": "any",
+      "layout": {
+        "type": "dashboard",
+        "className": "min-h-screen bg-gray-50 dark:bg-gray-900"
+      },
+      "sections": [
+        {
+          "id": "header",
+          "type": "header",
+          "components": [
+            {
+              "type": "container",
+              "className": "mb-8",
+              "children": [
+                {
+                  "type": "h1",
+                  "props": {
+                    "children": "{{pageTitle}}"
+                  }
+                },
+                {
+                  "type": "p",
+                  "props": {
+                    "children": "Welcome, {{user.name}}!"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "actions",
+          "type": "grid",
+          "title": "Quick Actions",
+          "layout": {
+            "cols": 2,
+            "gap": "6",
+            "className": "mb-8"
+          },
+          "components": [
+            {
+              "type": "action-card",
+              "props": {
+                "title": "View Profile",
+                "description": "Manage your account settings and preferences",
+                "icon": "👤",
+                "link": "/profile",
+                "buttonText": "Go to Profile",
+                "variant": "outline"
+              }
+            },
+            {
+              "type": "action-card",
+              "props": {
+                "title": "Settings",
+                "description": "Configure your application settings",
+                "icon": "⚙️",
+                "link": "/settings",
+                "buttonText": "Open Settings",
+                "variant": "outline"
+              }
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "requiresAuth": false,
+        "permissions": []
+      }
+    },
+    "admin-dashboard": {
+      "id": "admin-dashboard",
+      "title": "Admin Dashboard Template",
+      "description": "Administrative dashboard with system management tools",
+      "userType": "admin",
+      "layout": {
+        "type": "dashboard",
+        "className": "min-h-screen bg-gradient-to-br from-red-50 to-orange-100 dark:from-slate-900 dark:to-slate-800"
+      },
+      "sections": [
+        {
+          "id": "header",
+          "type": "header",
+          "components": [
+            {
+              "type": "container",
+              "className": "mb-8",
+              "children": [
+                {
+                  "type": "h1",
+                  "props": {
+                    "children": "Admin Dashboard"
+                  }
+                },
+                {
+                  "type": "p",
+                  "props": {
+                    "children": "System administration and management, {{user.name}}"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "system-stats",
+          "type": "card",
+          "title": "System Statistics",
+          "description": "Overview of system performance and usage",
+          "components": [
+            {
+              "type": "card",
+              "className": "mb-8",
+              "children": [
+                {
+                  "type": "card-header",
+                  "children": [
+                    {
+                      "type": "card-title",
+                      "className": "flex items-center space-x-2",
+                      "children": [
+                        {
+                          "type": "text",
+                          "props": {
+                            "content": "📊"
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "props": {
+                            "content": "System Statistics"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "card-description",
+                      "props": {
+                        "children": "Overview of system performance and usage"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "card-content",
+                  "children": [
+                    {
+                      "type": "grid",
+                      "props": {
+                        "cols": 4,
+                        "gap": "4"
+                      },
+                      "children": [
+                        {
+                          "type": "info-card",
+                          "props": {
+                            "title": "Total Users",
+                            "value": "1,234",
+                            "description": "Active Users",
+                            "variant": "primary"
+                          }
+                        },
+                        {
+                          "type": "info-card",
+                          "props": {
+                            "title": "Total Courses",
+                            "value": "67",
+                            "description": "Active Courses",
+                            "variant": "success"
+                          }
+                        },
+                        {
+                          "type": "info-card",
+                          "props": {
+                            "title": "System Load",
+                            "value": "67%",
+                            "description": "CPU Usage",
+                            "variant": "warning"
+                          }
+                        },
+                        {
+                          "type": "info-card",
+                          "props": {
+                            "title": "Storage",
+                            "value": "2.4 GB",
+                            "description": "Used Space",
+                            "variant": "secondary"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "admin-actions",
+          "type": "grid",
+          "title": "Administrative Actions",
+          "layout": {
+            "cols": 3,
+            "gap": "6",
+            "className": "mb-8"
+          },
+          "components": [
+            {
+              "type": "action-card",
+              "props": {
+                "title": "User Management",
+                "description": "Manage user accounts, roles, and permissions",
+                "icon": "👥",
+                "link": "/admin/users",
+                "buttonText": "Manage Users",
+                "variant": "outline"
+              }
+            },
+            {
+              "type": "action-card",
+              "props": {
+                "title": "Course Management",
+                "description": "Create and manage courses and content",
+                "icon": "📚",
+                "link": "/admin/courses",
+                "buttonText": "Manage Courses",
+                "variant": "outline"
+              }
+            },
+            {
+              "type": "action-card",
+              "props": {
+                "title": "System Settings",
+                "description": "Configure system-wide settings",
+                "icon": "⚙️",
+                "link": "/admin/settings",
+                "buttonText": "System Settings",
+                "variant": "outline"
+              }
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "requiresAuth": true,
+        "permissions": ["admin", "system-admin"]
+      }
+    }
+  }
+}

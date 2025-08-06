@@ -1,0 +1,24 @@
+# Docker Compose override for development
+version: '3.8'
+
+services:
+  backend:
+    build:
+      target: development
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - uploads_data:/app/uploads
+    command: npm run start:dev
+    stdin_open: true
+    tty: true
+
+  # Development database with exposed port for external connections
+  db:
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust # Only for development
